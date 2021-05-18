@@ -1,8 +1,9 @@
 import { Col, Row, Spin } from 'antd';
 import { NextPage } from 'next';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { CollectableDetail } from '../../components/CollectableDetail';
 
+import { CollectableDetail } from '../../components/CollectableDetail';
 import { Header } from '../../components/Header';
 import { useCollectable } from '../../hooks';
 
@@ -18,6 +19,9 @@ const Detail: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>{collectable?.name} | Crypto Collectable Wallet</title>
+      </Head>
       <Header title={collectable?.name} onBack={() => push('/')} />
       <Row>
         <Col flex="auto" lg={{ span: 12, offset: 6 }} md={{ span: 24 }}>

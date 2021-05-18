@@ -1,5 +1,6 @@
 import { Col, Empty, Row, Spin } from 'antd';
 import { NextPage } from 'next';
+import Head from 'next/head';
 import { useInView } from 'react-intersection-observer';
 
 import { useEffect } from 'react';
@@ -22,6 +23,9 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>List | Crypto Collectable Wallet</title>
+      </Head>
       <Header title="List" />
       <Row style={{ paddingBottom: 64 }}>
         <Col
