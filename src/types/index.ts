@@ -2,6 +2,7 @@
 export type Collectable = {
   id: number;
   token_id: string;
+  description: string;
   image_url: string;
   name: string;
   collection: {

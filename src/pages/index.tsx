@@ -24,7 +24,11 @@ const Home: NextPage = () => {
     <>
       <Header title="List" />
       <Row style={{ paddingBottom: 64 }}>
-        <Col lg={{ span: 12, offset: 6 }} md={{ span: 24 }}>
+        <Col
+          lg={{ span: 12, offset: 6 }}
+          md={{ span: 24 }}
+          style={{ width: '100%' }}
+        >
           {empty && <Empty />}
           {collectables.length > 0 && (
             <>

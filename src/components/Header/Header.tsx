@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Col, PageHeader, Row } from 'antd';
 
 interface HeaderProps {
-  title: string;
+  title?: string;
   onBack?: () => void;
 }
 

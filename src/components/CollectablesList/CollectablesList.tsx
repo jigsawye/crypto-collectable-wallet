@@ -1,5 +1,8 @@
 import { Card, Col, Row } from 'antd';
+import { useRouter } from 'next/dist/client/router';
 import { FC } from 'react';
+import Link from 'next/link';
+
 import { Collectable } from '../../types';
 
 import { Image } from '../Image';
@@ -14,15 +17,28 @@ const CollectablesList: FC<CollectablesListProps> = ({ collectables }) => {
       <Row gutter={[16, 16]}>
         {collectables.map((collectable) => (
           <Col key={collectable.id} span={12}>
-            <Card
-              hoverable
-              style={{ cursor: 'pointer' }}
-              cover={
-                <Image alt={collectable.name} src={collectable.image_url} />
-              }
+            <Link
+              href={{
+                pathname: '/[address]/[tokenId]',
+                query: {
+                  address: collectable.asset_contract.address,
+                  tokenId: collectable.token_id,
+                },
+              }}
+              passHref
             >
-              {collectable.name}
-            </Card>
+              <a>
+                <Card
+                  hoverable
+                  style={{ cursor: 'pointer' }}
+                  cover={
+                    <Image alt={collectable.name} src={collectable.image_url} />
+                  }
+                >
+                  {collectable.name}
+                </Card>
+              </a>
+            </Link>
           </Col>
         ))}
       </Row>

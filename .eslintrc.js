@@ -25,6 +25,8 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'react/prop-types': 'off',
 
+    'jsx-a11y/anchor-is-valid': 'off',
+
     'arrow-body-style': 'off',
 
     'prettier/prettier': 'error',
