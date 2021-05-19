@@ -31,7 +31,7 @@ const Home: NextPage = () => {
         <Col
           lg={{ span: 12, offset: 6 }}
           md={{ span: 24 }}
-          style={{ width: '100%' }}
+          style={{ width: '100%', padding: '0 12px' }}
         >
           {empty && <Empty />}
           {collectables.length > 0 && (

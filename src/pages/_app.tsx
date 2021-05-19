@@ -10,6 +10,7 @@ import 'antd/dist/antd.css';
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   const { account } = useWeb3();
 
+  // Render nothing when the user doesn't select any account
   if (!account) {
     return (
       <Head>

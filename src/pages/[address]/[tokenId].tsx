@@ -22,9 +22,17 @@ const Detail: NextPage = () => {
       <Head>
         <title>{collectable?.name} | Crypto Collectable Wallet</title>
       </Head>
-      <Header title={collectable?.name} onBack={() => push('/')} />
+      <Header
+        title={collectable?.name ?? 'Loading...'}
+        onBack={() => push('/')}
+      />
       <Row>
-        <Col flex="auto" lg={{ span: 12, offset: 6 }} md={{ span: 24 }}>
+        <Col
+          flex="auto"
+          lg={{ span: 12, offset: 6 }}
+          md={{ span: 24 }}
+          style={{ padding: '0 12px' }}
+        >
           <Row justify="center">
             {error && <h2>{error.message}</h2>}
             {!error && loading && <Spin />}

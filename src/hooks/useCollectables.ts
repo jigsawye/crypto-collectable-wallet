@@ -34,11 +34,15 @@ const useCollectables = (): {
   const loadingInitialData = !data && !error;
   const loading =
     (loadingInitialData ||
+      // If we switch to next page but the data is undefined
       (size > 0 && data && typeof data[size - 1] === 'undefined')) ??
     false;
+  // data length of first page is 0
   const empty = data?.[0]?.assets.length === 0;
   const reachingEnd =
-    (empty || (data && data[data.length - 1]?.assets.length < PAGE_SIZE)) ??
+    (empty ||
+      // The data length of last page is small than page size
+      (data && data[data.length - 1]?.assets.length < PAGE_SIZE)) ??
     false;
 
   const loadMore = useCallback(
@@ -46,7 +50,13 @@ const useCollectables = (): {
     [setSize]
   );
 
-  return { collectables, loading, loadMore, empty, reachingEnd };
+  return {
+    collectables,
+    loading,
+    loadMore,
+    empty,
+    reachingEnd,
+  };
 };
 
 export { useCollectables };

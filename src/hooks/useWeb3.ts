@@ -11,7 +11,7 @@ const useWeb3 = (): {
 
   useEffect(() => {
     const initialAccount = async () => {
-      // Use demo account if the user doesn't install Metamask
+      // Use demo account if the user doesn't install Metamask extension
       if (!Web3.givenProvider) {
         setAccount(DEMO_ACCOUNT);
         return;
@@ -26,6 +26,7 @@ const useWeb3 = (): {
         return;
       }
 
+      // Start the select account flow
       Modal.confirm({
         title: 'Welcome to use Crypto Collectable Wallet!',
         content:
