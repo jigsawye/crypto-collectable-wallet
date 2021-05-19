@@ -1,9 +1,10 @@
 import { useCallback } from 'react';
 import { useSWRInfinite } from 'swr';
+
+import { API_ENDPOINT, PAGE_SIZE } from '../constants';
 import { Collectable } from '../types';
 
-const PAGE_SIZE = 20;
-const OWNER = '0x960DE9907A2e2f5363646d48D7FB675Cd2892e91';
+import { useAccountContext } from './useAccountContext';
 
 const useCollectables = (): {
   collectables: Collectable[];
@@ -12,6 +13,8 @@ const useCollectables = (): {
   empty: boolean;
   reachingEnd: boolean;
 } => {
+  const account = useAccountContext();
+
   const { data, error, size, setSize } = useSWRInfinite<{
     assets: Collectable[];
   }>((pageIndex, previousPageData) => {
@@ -19,7 +22,7 @@ const useCollectables = (): {
       return null;
     }
 
-    return `https://api.opensea.io/api/v1/assets?format=json&limit=${PAGE_SIZE}&owner=${OWNER}&offset=${
+    return `${API_ENDPOINT}/assets?format=json&limit=${PAGE_SIZE}&owner=${account}&offset=${
       pageIndex * PAGE_SIZE
     }`;
   });

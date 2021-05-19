@@ -41,7 +41,7 @@ const Home: NextPage = () => {
             </>
           )}
           <Row justify="center" style={{ marginTop: 32 }}>
-            {reachingEnd && <h3>no more collectables</h3>}
+            {!empty && reachingEnd && <h3>no more collectables</h3>}
             {loading && <Spin />}
           </Row>
         </Col>
