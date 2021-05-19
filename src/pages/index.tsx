@@ -10,7 +10,7 @@ import { CollectablesList } from '../components/CollectablesList';
 import { useCollectables } from '../hooks';
 
 const Home: NextPage = () => {
-  const { collectables, loading, empty, reachingEnd, loadMore } =
+  const { collectables, loading, error, empty, reachingEnd, loadMore } =
     useCollectables();
   const { ref, inView } = useInView();
 
@@ -19,7 +19,7 @@ const Home: NextPage = () => {
       loadMore();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView, loading]);
+  }, [inView, loading, reachingEnd]);
 
   return (
     <>
@@ -41,6 +41,7 @@ const Home: NextPage = () => {
             </>
           )}
           <Row justify="center" style={{ marginTop: 32 }}>
+            {error && <h3>{error.message}</h3>}
             {!empty && reachingEnd && <h3>no more collectables</h3>}
             {loading && <Spin />}
           </Row>

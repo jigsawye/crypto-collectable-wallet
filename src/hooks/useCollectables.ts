@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { useSWRInfinite } from 'swr';
 
 import { API_ENDPOINT, PAGE_SIZE } from '../constants';
+import { fetcher } from '../utils';
 import { Collectable } from '../types';
 
 import { useAccountContext } from './useAccountContext';
@@ -9,6 +10,7 @@ import { useAccountContext } from './useAccountContext';
 const useCollectables = (): {
   collectables: Collectable[];
   loading: boolean;
+  error?: Error;
   loadMore: () => void;
   empty: boolean;
   reachingEnd: boolean;
@@ -25,7 +27,7 @@ const useCollectables = (): {
     return `${API_ENDPOINT}/assets?format=json&limit=${PAGE_SIZE}&owner=${account}&offset=${
       pageIndex * PAGE_SIZE
     }`;
-  });
+  }, fetcher);
 
   const collectables = data
     ? data.reduce<Collectable[]>((acc, curr) => [...acc, ...curr.assets], [])
@@ -53,6 +55,7 @@ const useCollectables = (): {
   return {
     collectables,
     loading,
+    error,
     loadMore,
     empty,
     reachingEnd,

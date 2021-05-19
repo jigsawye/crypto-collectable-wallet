@@ -1,14 +1,7 @@
 import useSWR from 'swr';
+
+import { fetcher } from '../utils';
 import { Collectable } from '../types';
-
-const fetcher = (url: string) =>
-  fetch(url).then((res) => {
-    if (!res.ok) {
-      throw new Error('Something went wrong!');
-    }
-
-    return res.json();
-  });
 
 const useCollectable = ({
   address,
